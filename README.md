@@ -1,0 +1,2 @@
+# Disciplina_PensamentoComputacional
+Atividades didáticas
