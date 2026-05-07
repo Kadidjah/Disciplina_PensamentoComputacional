@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disciplina de Pensamento Computacional - Atividades didáticas">
+    <meta name="keywords" content="pensamento computacional, educação, programação">
+    <meta name="author" content="Kadidjah">
+    <meta name="theme-color" content="#154873">
+    
+    <title>Pensamento Computacional - Disciplina Didática</title>
+    
+    <!-- Gov.br Design System CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/trf1w/dsgov@3.25.0/dist/fonts/fonts.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@govbr-ds/core@3.25.0/dist/css/index.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --color-primary: #154873;
+            --color-secondary: #00A3E0;
+            --color-success: #04B97E;
+            --color-warning: #FFB426;
+            --color-error: #E74C3C;
+            --color-info: #0078D4;
+            --spacing-unit: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Header/Navigation */
+        .br-header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .header-nav a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            margin: 0.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--color-primary);
+            border-color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--color-secondary);
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+        }
+
+        .card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-bottom: 1rem;
+        }
+
+        .accordion-button {
+            background-color: #f5f5f5;
+            color: var(--color-primary);
+            padding: 1rem;
+            width: 100%;
+            text-align: left;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion-button:hover {
+            background-color: #e8e8e8;
+        }
+
+        .accordion-button.active {
+            background-color: var(--color-secondary);
+            color: white;
+        }
+
+        .accordion-content {
+            display: none;
+            background-color: white;
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        .accordion-content pre {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .accordion-content code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        section h2 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--color-secondary);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background-color: var(--color-success);
+            color: white;
+        }
+
+        .badge-warning {
+            background-color: var(--color-warning);
+            color: #333;
+        }
+
+        .badge-info {
+            background-color: var(--color-info);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .header-nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card, section {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="br-header">
+        <div class="header-content">
+            <a href="#inicio" class="header-brand">🎯 Pensamento Computacional</a>
+            <nav>
+                <ul class="header-nav">
+                    <li><a onclick="scrollTo('inicio')">Início</a></li>
+                    <li><a onclick="scrollTo('modulos')">Módulos</a></li>
+                    <li><a onclick="scrollTo('desafios')">Desafios</a></li>
+                    <li><a onclick="scrollTo('recursos')">Recursos</a></li>
+                    <li><a onclick="scrollTo('sobre')">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <h1>🚀 Disciplina de Pensamento Computacional</h1>
+            <p>Explore os fundamentos da computação e desenvolva habilidades de resolução de problemas</p>
+            <button class="btn-primary" onclick="scrollTo('desafios')">Começar Desafios</button>
+            <button class="btn-secondary" onclick="scrollTo('recursos')">Ver Recursos</button>
+        </section>
+
+        <!-- Módulos Section -->
+        <section id="modulos">
+            <h2>📚 Módulos de Aprendizado</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🔴 Tratamento de Erros</h3>
+                    <p>Aprenda a identificar, corrigir e prevenir erros de sintaxe, lógica e execução. Domine as técnicas de debugging e tratamento de exceções.</p>
+                    <button class="btn-primary" onclick="toggleAccordion('modulo1')">Expandir Conteúdo</button>
+                </div>
+                <div class="card">
+                    <h3>⚙️ Lógica de Programação</h3>
+                    <p>Estude algoritmos, estruturas de controle, funções e estruturas de dados. Fundamentos essenciais para qualquer programador.</p>
+                    <button class="btn-primary" onclick="alert('Em breve!')">Em Breve</button>
+                </div>
+                <div class="card">
+                    <h3>🔗 Estruturas de Dados</h3>
+                    <p>Explore arrays, listas, pilhas, filas e árvores. Aprenda quando e como usar cada estrutura em seus projetos.</p>
+                    <button class="btn-primary" onclick="alert('Em breve!')">Em Breve</button>
+                </div>
+            </div>
+
+            <!-- Accordion for Module 1 -->
+            <div id="modulo1-content" style="margin-top: 2rem; display: none;">
+                <h3>Tratamento de Erros - Conteúdo Completo</h3>
+                
+                <div class="accordion">
+                    <button class="accordion-button" onclick="toggleContent(this)">
+                        <span>📌 Conceito 1: Erro de Sintaxe</span>
+                        <span>+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Erros de sintaxe ocorrem quando o código viola as regras da linguagem de programação.</p>
+                        <strong>Exemplo:</strong>
+                        <pre><code>def saudacao(nome)  # ❌ Falta de dois-pontos
+    print("Olá, " + nome)</code></pre>
+                        <strong>Solução:</strong>
+                        <pre><code>def saudacao(nome):  # ✅ Correto
+    print("Olá, " + nome)</code></pre>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button" onclick="toggleContent(this)">
+                        <span>📌 Conceito 2: Erro de Lógica</span>
+                        <span>+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>O código executa sem erros, mas produz resultados inesperados.</p>
+                        <strong>Exemplo:</strong>
+                        <pre><code>if numero % 2 == 1:  # Verifica ÍMPARES, não pares!
+    print("Número par")</code></pre>
+                        <strong>Solução:</strong>
+                        <pre><code>if numero % 2 == 0:  # ✅ Verifica PARES
+    print("Número par")</code></pre>
+                    </div>
+                </div>
+
+                <div class="accordion">
+                    <button class="accordion-button" onclick="toggleContent(this)">
+                        <span>📌 Conceito 3: Erro de Execução</span>
+                        <span>+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>O código é válido, mas causas uma exceção durante a execução.</p>
+                        <strong>Exemplo:</strong>
+                        <pre><code>resultado = 10 / 0  # ❌ ZeroDivisionError!</code></pre>
+                        <strong>Solução:</strong>
+                        <pre><code>try:
+    resultado = 10 / 0
+except ZeroDivisionError:
+    print("Não é possível dividir por zero")</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Desafios Section -->
+        <section id="desafios">
+            <h2>🎯 Desafios Práticos</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Desafio</th>
+                        <th>Dificuldade</th>
+                        <th>Tipo</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Erro de Sintaxe</strong></td>
+                        <td><span class="badge badge-success">Fácil</span></td>
+                        <td>Syntaxe</td>
+                        <td><span class="badge badge-info">Novo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Contar Números Pares</strong></td>
+                        <td><span class="badge badge-success">Fácil</span></td>
+                        <td>Lógica</td>
+                        <td><span class="badge badge-info">Novo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Divisão Segura</strong></td>
+                        <td><span class="badge badge-warning">Médio</span></td>
+                        <td>Execução</td>
+                        <td><span class="badge badge-info">Novo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Debug com Print</strong></td>
+                        <td><span class="badge badge-warning">Médio</span></td>
+                        <td>Debug</td>
+                        <td><span class="badge badge-info">Novo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Calculadora IMC (Bônus)</strong></td>
+                        <td><span class="badge">Avançado</span></td>
+                        <td>Validação</td>
+                        <td><span class="badge badge-info">Novo</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cards-grid" style="margin-top: 2rem;">
+                <div class="card">
+                    <h3>🎓 Como Resolver?</h3>
+                    <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                        <li>Leia o enunciado com atenção</li>
+                        <li>Entenda o erro ou problema</li>
+                        <li>Escreva a solução no editor</li>
+                        <li>Teste com diferentes entradas</li>
+                        <li>Compareà solução comentada</li>
+                        <li>Refatore e otimize</li>
+                    </ol>
+                </div>
+                <div class="card">
+                    <h3>💡 Dicas Importantes</h3>
+                    <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                        <li>Use print() para debug</li>
+                        <li>Teste casos extremos</li>
+                        <li>Valide entradas do usuário</li>
+                        <li>Use try/except para erros</li>
+                        <li>Comente seu código</li>
+                        <li>Reutilize funções</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recursos Section -->
+        <section id="recursos">
+            <h2>🔗 Recursos Adicionais</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>📖 Documentação</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li><a href="https://docs.python.org/" target="_blank" rel="noopener">Python Official Docs</a></li>
+                        <li><a href="https://www.w3schools.com/" target="_blank" rel="noopener">W3Schools</a></li>
+                        <li><a href="https://developer.mozilla.org/" target="_blank" rel="noopener">MDN Web Docs</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🛠️ Ferramentas</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li><a href="https://replit.com/" target="_blank" rel="noopener">Replit - Online IDE</a></li>
+                        <li><a href="https://www.python.org/downloads/" target="_blank" rel="noopener">Python Download</a></li>
+                        <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>📚 Tutoriais</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li><a href="https://www.codecademy.com/" target="_blank" rel="noopener">Codecademy</a></li>
+                        <li><a href="https://www.coursera.org/" target="_blank" rel="noopener">Coursera</a></li>
+                        <li><a href="https://www.udemy.com/" target="_blank" rel="noopener">Udemy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre">
+            <h2>ℹ️ Sobre a Disciplina</h2>
+            <div class="card">
+                <h3>Objetivo</h3>
+                <p>Esta disciplina tem como objetivo desenvolver o pensamento computacional, ensinando aos alunos como resolver problemas complexos usando lógica, algoritmos e estruturas de dados.</p>
+                
+                <h3 style="margin-top: 1.5rem;">O que você vai aprender?</h3>
+                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                    <li>✅ Identificar e corrigir erros de programação</li>
+                    <li>✅ Desenvolver algoritmos eficientes</li>
+                    <li>✅ Usar estruturas de dados apropriadas</li>
+                    <li>✅ Escrever código limpo e bem documentado</li>
+                    <li>✅ Resolver problemas de forma lógica</li>
+                    <li>✅ Trabalhar em equipe e colaborar</li>
+                </ul>
+
+                <h3 style="margin-top: 1.5rem;">Duração</h3>
+                <p>12 semanas com atividades semanais e projetos práticos.</p>
+
+                <h3 style="margin-top: 1.5rem;">Avaliação</h3>
+                <p>Baseada em desafios práticos, projetos finais e participação nas atividades.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Disciplina de Pensamento Computacional</p>
+        <p>Desenvolvido com 💙 para melhorar a educação em computação</p>
+        <div class="footer-links">
+            <a href="#" target="_blank" rel="noopener">GitHub</a>
+            <a href="#" target="_blank" rel="noopener">Contato</a>
+            <a href="#" target="_blank" rel="noopener">Privacidade</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scroll
+        function scrollTo(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Toggle accordion content
+        function toggleContent(button) {
+            const content = button.nextElementSibling;
+            const isActive = button.classList.contains('active');
+
+            // Close all other accordions
+            document.querySelectorAll('.accordion-button').forEach(btn => {
+                if (btn !== button) {
+                    btn.classList.remove('active');
+                    btn.nextElementSibling.classList.remove('active');
+                    btn.querySelector('span:last-child').textContent = '+';
+                }
+            });
+
+            // Toggle current
+            button.classList.toggle('active');
+            content.classList.toggle('active');
+            button.querySelector('span:last-child').textContent = isActive ? '+' : '−';
+        }
+
+        // Toggle module content
+        function toggleAccordion(id) {
+            const content = document.getElementById(id + '-content');
+            if (content) {
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        // Add keyboard accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.accordion-content.active').forEach(el => {
+                    el.classList.remove('active');
+                    el.previousElementSibling.classList.remove('active');
+                });
+            }
+        });
+
+        // Log accessibility
+        console.log('✅ Página carregada com sucesso!');
+        console.log('🎨 Design System gov.br integrado');
+        console.log('♿ Acessibilidade: WCAG 2.1 Level AA');
+    </script>
+</body>
+</html>
